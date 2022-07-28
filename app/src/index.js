@@ -7,7 +7,6 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const authRoutes = require("./routes/authRoutes");
 const gameRoutes = require("./routes/gameRoutes");
-const requireAuth = require("./middlewares/requireAuth");
 const userRoutes = require("./routes/userRoutes");
 
 const app = express();

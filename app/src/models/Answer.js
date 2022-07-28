@@ -1,14 +1,10 @@
 const mongoose = require("mongoose");
 
+//each answer has the reference of a question
 const answerSchema = new mongoose.Schema({
   description: {
     type: String,
     required: true,
-  },
-  correct: {
-    type: Boolean,
-    required: true,
-    default: false
   },
   question: {
     type: mongoose.Schema.Types.ObjectId,

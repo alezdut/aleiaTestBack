@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
-
+//each user has email and password to authenticate
 const userSchema = new mongoose.Schema(
   {
     email: {

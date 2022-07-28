@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+//the score has the current score and the user that it belongs to
 const scoreSchema = new mongoose.Schema({
   score: {
     type: Number,

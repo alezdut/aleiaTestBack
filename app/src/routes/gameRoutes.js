@@ -8,6 +8,7 @@ const Score = mongoose.model("Score");
 
 const router = express.Router();
 
+//this endpoint get all the questions
 router.get("/questions/all", requireAuth, (req, res) => {
   Question.find()
     .then((r) => {
@@ -20,7 +21,7 @@ router.get("/questions/all", requireAuth, (req, res) => {
       res.status(400).json({ success: false, error: err });
     });
 });
-
+//this endpoint get all the answers
 router.get("/answers/all", requireAuth, (req, res) => {
   Answer.find()
     .then((r) => {
@@ -33,7 +34,7 @@ router.get("/answers/all", requireAuth, (req, res) => {
       res.status(400).json({ success: false, error: err });
     });
 });
-
+//allows to create new questions
 router.post("/question/new", requireAuth, (req, res) => {
   const { name, description, answerId } = req.body;
   if (!name || !description || !answerId) {
@@ -57,7 +58,7 @@ router.post("/question/new", requireAuth, (req, res) => {
     
   }
 });
-
+//allow to create new answers
 router.post("/answer/new", requireAuth, (req, res) => {
   const { description } = req.body;
   if (!description) {
@@ -75,9 +76,7 @@ router.post("/answer/new", requireAuth, (req, res) => {
       });
       }
 })
-  
-
-
+//creates new score for the user
 router.post("/score/new", requireAuth, (req, res) => {
   const { userId } = req.body;
   if (!userId) {
@@ -95,7 +94,7 @@ router.post("/score/new", requireAuth, (req, res) => {
       });
       }
 })
-
+//validate the question and the answer submited, if match score + 3, if not, score -1
 router.put("/question/validate", requireAuth, async(req, res) => {
   const { questionId, answerId, userId } = req.body;
   if (!questionId || !answerId || !userId) {
@@ -109,7 +108,6 @@ router.put("/question/validate", requireAuth, async(req, res) => {
 
   if(question.answer == answerId){
       score = score + 3
-      console.log(score);
   }
   else{
       score = score -1
